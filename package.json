@@ -1,0 +1,23 @@
+{
+  "name": "bookmark-manager",
+  "version": "1.0.0",
+  "description": "Vimeo and Flickr links manager",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nfgoto/bookmark-manager.git"
+  },
+  "keywords": ["vimeo", "flickr", "bookmark"],
+  "author": "iFlorian GOTO",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nfgoto/bookmark-manager/issues"
+  },
+  "homepage": "https://github.com/nfgoto/bookmark-manager#readme"
+}
