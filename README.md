@@ -16,7 +16,7 @@ frontend
 
 backend
 
-- test
+- test - DONE
 - linting - DONE
 - prettify - DONE
 - request logging - DONE
@@ -33,6 +33,7 @@ backend
 - development with hot reload - DONE
 - graceful shutdown - DONE
 - rate limiting - DONE
+- versioning
 
 database
 

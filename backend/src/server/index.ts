@@ -6,7 +6,6 @@ export const setupServer = (app: Application): Application => {
   app.use(getMiddlewares());
 
   // health check
-
   app.get('/health', (_req, res) => { res.send('OK') })
 
   // app level error handling
