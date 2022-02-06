@@ -17,7 +17,8 @@ frontend
 backend
 
 - test
-- linting
+- linting - DONE
+- prettify - DONE
 - request logging - DONE
 - healthcheck - DONE
 - secure headers - DONE
