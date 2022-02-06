@@ -19,18 +19,19 @@ backend
 - test
 - linting
 - request logging - DONE
-- healthcheck
-- secure headers
+- healthcheck - DONE
+- secure headers - DONE
 - csrf
-- cors
+- cors - DONE
 - swagger
 - middleware - DONE
 - validation
-- error handling
+- error handling - DONE
 - REST HTTP codes
 - authentication ?
 - development with hot reload - DONE
 - graceful shutdown - DONE
+- rate limiting - DONE
 
 database
 
