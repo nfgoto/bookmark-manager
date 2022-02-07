@@ -103,6 +103,19 @@ dist
 # TernJS port file
 .tern-port
 
-# hiy related
+# GIT related
 .git/
+.gitignore
 .husky
+
+# test related
+test/
+test*
+
+# linting related
+*eslint*
+*prettier*
+
+# docker reslated
+.dockerignore
+Dockerfile

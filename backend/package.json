@@ -13,7 +13,8 @@
     "test:cov": "jest --coverage",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "prettify": "prettier -c **/*.ts"
+    "prettify": "prettier -c **/*.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
