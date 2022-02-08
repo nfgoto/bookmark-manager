@@ -1,7 +1,6 @@
 import type { RequestHandler } from "express";
 
 export const getLinks: RequestHandler = (_, res) => {
-
   const links = [
     {
       id: 1,
@@ -31,8 +30,7 @@ export const getLinks: RequestHandler = (_, res) => {
       author: "Scala Node",
       added: new Date().toISOString(),
     },
-  ]
+  ];
 
-  res.json({ links })
-}
-
+  res.json({ links });
+};

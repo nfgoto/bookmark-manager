@@ -1,14 +1,17 @@
 const path = require("path");
 const express = require("express");
-const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 
 const SERVER_PORT = process.env.SERVER_PORT ?? 4000;
 const app = express();
 
-app.use(helmet());
-app.use(cors());
+app.use(
+  helmet({
+    // for development purposes (in prod: set specific directives)
+    contentSecurityPolicy: false,
+  })
+);
 app.use(morgan("short"));
 app.use(express.json());
 

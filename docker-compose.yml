@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  api:
+    build: ./backend/
+    ports:
+      - 3000:3000
+    environment:
+      - SERVER_PORT=3000
+  client:
+    build:
+      context: ./frontend/
+      args:
+        - REACT_APP_API_HOST=localhost
+        - REACT_APP_API_PORT=3000
+    environment:
+      - SERVER_PORT=4000
+    ports:
+      - 80:4000

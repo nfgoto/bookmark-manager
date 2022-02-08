@@ -7,7 +7,7 @@ TODO
 containerization
 
 - docker - DONE
-- docker-compose
+- docker-compose - DONE
 
 frontend
 

@@ -12,9 +12,12 @@ export default function DataGridComponent() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axiosInstance.get("/v1/links").then(({ data }) => {
-      setRows(data?.links);
-    });
+    axiosInstance
+      .get("/v1/links")
+      .then(({ data }) => {
+        setRows(data?.links);
+      })
+      .catch(console.error);
   }, []);
 
   const columns: GridColDef[] = [
