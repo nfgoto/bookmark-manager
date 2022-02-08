@@ -1,45 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-
-const _rows = [
-  {
-    id: 1,
-    url: "https://vimeo.com/216330850",
-    title: "Why Scala is always better than Node.js",
-    author: "Scala Node",
-    added: new Date().toISOString(),
-  },
-  {
-    id: 2,
-    url: "https://vimeo.com/216330850",
-    title: "Why Scala is always better than Node.js",
-    author: "Scala Node",
-    added: new Date().toISOString(),
-  },
-  {
-    id: 3,
-    url: "https://vimeo.com/216330850",
-    title: "Why Scala is always better than Node.js",
-    author: "Scala Node",
-    added: new Date().toISOString(),
-  },
-  {
-    id: 4,
-    url: "https://vimeo.com/216330850",
-    title: "Why Scala is always better than Node.js",
-    author: "Scala Node",
-    added: new Date().toISOString(),
-  },
-];
+import { axiosInstance } from "../lib/http";
 
 export default function DataGridComponent() {
-  const [rows] = useState(() => _rows);
+  const [rows, setRows] = useState(() => []);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axiosInstance.get("/v1/links").then(({ data }) => {
+      setRows(data?.links);
+    });
+  }, []);
 
   const columns: GridColDef[] = [
     {

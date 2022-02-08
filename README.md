@@ -21,7 +21,7 @@ frontend
 - form validation
 - date picker
 - toast notifications
-- API HTTP client
+- API HTTP client - DONE
 - search ?
 
 backend
@@ -43,7 +43,7 @@ backend
 - development with hot reload - DONE
 - graceful shutdown - DONE
 - rate limiting - DONE
-- versioning
+- versioning - DONE
 - prevent duplication
 
 database
