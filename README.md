@@ -4,15 +4,25 @@ Vimeo and Flickr links manager
 
 TODO
 
-docker containers / compose / kubernetes?
+containerization
+
+- docker - DONE
+- docker-compose
 
 frontend
 
 - react - DONE
-- error boundary
-- reuse components
-- router
-- hooks
+- error boundary - DONE
+- reuse components - DONE
+- router - DONE
+- hooks - DONE
+- edit form
+- add form
+- form validation
+- date picker
+- toast notifications
+- API HTTP client
+- search ?
 
 backend
 
@@ -34,6 +44,7 @@ backend
 - graceful shutdown - DONE
 - rate limiting - DONE
 - versioning
+- prevent duplication
 
 database
 

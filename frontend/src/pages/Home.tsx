@@ -1,5 +1,9 @@
-import * as React from "react";
+import Datagrid from "../components/Datagrid";
 
 export default (): JSX.Element => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <Datagrid />
+    </div>
+  );
 };

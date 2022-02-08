@@ -1,5 +1,8 @@
+import { useLocation } from "react-router-dom";
+
 export default (): JSX.Element => {
-  throw new Error("AN RRRRRRRRRRRRRRRRRRRR");
+  const { state } = useLocation();
+  console.log(state);
 
   return <div>Edit</div>;
 };
