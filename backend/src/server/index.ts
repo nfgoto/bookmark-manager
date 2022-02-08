@@ -1,12 +1,13 @@
 import { Application, ErrorRequestHandler } from "express";
 import { getMiddlewares } from "../middleware";
+import { getRoutes } from "../routes";
 
 export const setupServer = (app: Application): Application => {
   // register middlewares
   app.use(getMiddlewares());
 
-  // health check
-  app.get('/health', (_req, res) => { res.send('OK') })
+  // register routes
+  getRoutes().forEach((router, prefix) => app.use(prefix, router))
 
   // app level error handling
   const errorRequestHandler: ErrorRequestHandler = ({ status, message }, req, res) => {
