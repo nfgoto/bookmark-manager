@@ -79,10 +79,6 @@ export default function DataGridComponent() {
     },
   ];
 
-  const handleAddRow = () => {
-    // TODO: redirect to create link page
-  };
-
   return (
     <div style={{ height: 600, width: "100%" }}>
       <Stack
@@ -91,7 +87,12 @@ export default function DataGridComponent() {
         alignItems="flex-start"
         columnGap={1}
       >
-        <Button size="small" onClick={handleAddRow}>
+        <Button
+          size="small"
+          onClick={() => {
+            navigate("/add");
+          }}
+        >
           Add link
         </Button>
       </Stack>

@@ -17,9 +17,8 @@ frontend
 - router - DONE
 - hooks - DONE
 - edit form
-- add form
-- form validation
-- date picker
+- add form - DONE
+- form validation - DONE
 - toast notifications
 - API HTTP client - DONE
 - search ?

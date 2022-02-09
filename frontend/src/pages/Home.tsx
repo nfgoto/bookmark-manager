@@ -1,6 +1,6 @@
 import Datagrid from "../components/Datagrid";
 
-export default (): JSX.Element => {
+export const Home = (): JSX.Element => {
   return (
     <div>
       <Datagrid />

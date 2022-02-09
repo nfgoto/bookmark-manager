@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-export default (): JSX.Element => {
+export const EditLink = (): JSX.Element => {
   const { state } = useLocation();
   console.log(state);
 
