@@ -23,6 +23,7 @@ frontend
 - toast notifications
 - API HTTP client - DONE
 - search ?
+- oEmbed URL schemevalidation for providers (add form)
 
 backend
 
@@ -36,15 +37,15 @@ backend
 - cors - DONE
 - swagger
 - middleware - DONE
-- validation
-- error handling - DONE
+- validation (oEmbed URL schemes, tags)
+- error handling (sync + async) - DONE
 - REST HTTP codes
 - authentication ?
 - development with hot reload - DONE
 - graceful shutdown - DONE
 - rate limiting - DONE
 - versioning - DONE
-- prevent duplication
+- prevent duplication of links
 
 database
 

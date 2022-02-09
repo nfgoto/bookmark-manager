@@ -16,8 +16,12 @@ RUN npm run build
 ## RUN STAGE ##
 
 FROM node:lts-alpine
+
 WORKDIR /app/
+
 ENV NODE_ENV=production
+ENV OEMBED_PROVIDERS_URL="https://oembed.com/providers.json"
+
 COPY --from=build /app/dist/ /app/package*.json ./
 RUN npm ci --production
 
