@@ -39,7 +39,12 @@ export default function DataGridComponent() {
       headerName: "URL",
       width: 340,
       renderCell: ({ value }) => (
-        <a href={value} style={{ overflow: "auto" }}>
+        <a
+          href={value}
+          style={{ overflow: "auto" }}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {value}
         </a>
       ),
