@@ -11,10 +11,14 @@ type OEmbedProvider = {
   }[];
 };
 
-interface LinkMetadata {
-  url: string;
-  width?: string;
-  height?: string;
+export interface LinkMetadata {
+  type: string;
+  title: string;
+  width: number;
+  height: number;
+  author_name: string;
+  duration?: number; // vimeo
+  upload_date?: Date; // vimeo
 }
 
 /**

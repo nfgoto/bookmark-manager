@@ -44,9 +44,8 @@ backend
 - graceful shutdown - DONE
 - rate limiting - DONE
 - versioning - DONE
-- prevent duplication of links
+- prevent duplication of links (db unicity) - DONE
 
 database
 
-- sqlite / typeorm
-- mongo ?
+- sqlite / typeorm - DONE

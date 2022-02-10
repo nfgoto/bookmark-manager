@@ -42,8 +42,8 @@ export default function DataGridComponent() {
       width: 150,
     },
     {
-      field: "added",
-      headerName: "Added",
+      field: "uploadDate",
+      headerName: "Upload Date",
       type: "date",
       width: 200,
     },
