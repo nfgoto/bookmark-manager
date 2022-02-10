@@ -1,6 +1,7 @@
 ## BUILD STAGE ##
 
-FROM node:lts-alpine AS build
+# problems when installing sqlite3 with alpine (missing/incompatible deps)
+FROM node:lts AS build
 WORKDIR /app/
 
 # fetcch dependencies
@@ -15,7 +16,7 @@ RUN npm run build
 
 ## RUN STAGE ##
 
-FROM node:lts-alpine
+FROM node:lts
 
 WORKDIR /app/
 

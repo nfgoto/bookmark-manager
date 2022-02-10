@@ -4,6 +4,11 @@ import { getPhotoLinkRepository } from "../data/repositories/photoLinkRepo";
 import { getVideoLinkRepository } from "../data/repositories/videoLinkRepo";
 import { LinkMetadata } from "./oembed";
 
+export enum LinkType {
+  PHOTO = "photo",
+  VIDEO = "video",
+}
+
 export const persist = async (
   consumerUrl: string,
   linkMetadata: LinkMetadata
@@ -33,4 +38,21 @@ export const findAll = async () => {
   const photoLinks = await getPhotoLinkRepository().find();
   const otherLinks = await getLinkRepository().find();
   return [...videoLinks, ...photoLinks, ...otherLinks];
+};
+
+export const deleteByTypeAndId = async (linkType: string, id: string) => {
+  switch (linkType) {
+    case LinkType.PHOTO: {
+      await getPhotoLinkRepository().delete(id);
+      return;
+    }
+    case LinkType.VIDEO: {
+      await getVideoLinkRepository().delete(id);
+      return;
+    }
+    default: {
+      await getLinkRepository().delete(id);
+      return;
+    }
+  }
 };

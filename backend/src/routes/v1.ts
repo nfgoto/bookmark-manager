@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getLinks, createLink } from "../controllers/v1";
+import { getLinks, createLink, removeLink } from "../controllers/v1";
 import { asyncWrapper } from "../utils/asyncwrapper";
 
 export const v1Router = Router();
@@ -12,3 +12,7 @@ v1Router.get("/links", asyncWrapper(getLinks));
 // TODO: add payload validation
 // TODO: add csrf token
 v1Router.post("/link", asyncWrapper(createLink));
+
+// DELETE /link/:linktype/:id
+// TODO: add csrf token
+v1Router.delete("/link/:linkType/:id", asyncWrapper(removeLink));

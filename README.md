@@ -2,7 +2,15 @@
 
 Vimeo and Flickr links manager
 
-TODO
+To run the app, inside the project root directory, run the command:
+
+`docker-compose up`
+
+Then open your web browser and go to [localhost](http://localhost)
+
+====================
+
+TODO / DONE:
 
 containerization
 
@@ -38,14 +46,13 @@ backend
 - middleware - DONE
 - validation (oEmbed URL schemes, tags)
 - error handling (sync + async) - DONE
-- REST HTTP codes
-- authentication ?
+- REST HTTP codes - DONE
 - development with hot reload - DONE
 - graceful shutdown - DONE
 - rate limiting - DONE
 - versioning - DONE
-- prevent duplication of links (db unicity) - DONE
 
 database
 
 - sqlite / typeorm - DONE
+- prevent duplication of links (column unicity and indexing) - DONE

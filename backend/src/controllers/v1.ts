@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { findAll, persist } from "../services/db";
+import { deleteByTypeAndId, findAll, persist } from "../services/db";
 import { getLinkMetadata } from "../services/oembed";
 
 interface CreateLinkPayload {
@@ -17,4 +17,10 @@ export const createLink = async ({ body }: Request, res: Response) => {
   const linkMetadata = await getLinkMetadata(provider, consumerUrl);
   await persist(consumerUrl, linkMetadata);
   res.status(201).end();
+};
+
+export const removeLink = async ({ params }: Request, res: Response) => {
+  const { id, linkType } = params;
+  await deleteByTypeAndId(linkType, id);
+  res.status(200).end();
 };

@@ -7,8 +7,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 import { axiosInstance } from "../lib/http";
 
+interface LinkMetadata {
+  duration?: number;
+  url: string;
+  title: string;
+  type: string;
+  author: string;
+  uploadDate: Date;
+  width: number;
+  height: number;
+}
+
 export default function DataGridComponent() {
-  const [rows, setRows] = useState(() => []);
+  const [rows, setRows] = useState<LinkMetadata[]>(() => []);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -53,6 +64,8 @@ export default function DataGridComponent() {
       headerName: "Actions",
       width: 100,
       renderCell: ({ id, api }) => {
+        const { type: linkType } = api.getRow(id) as LinkMetadata;
+
         const handleEditClick = () => {
           console.log("editing ", api.getRow(id));
           navigate("/edit", { state: {} });
@@ -61,9 +74,14 @@ export default function DataGridComponent() {
           // don't select this row after clicking
           e.stopPropagation();
 
-          // TODO: delete on the backend
-
-          api.updateRows([{ id, _action: "delete" }]);
+          // delete on the backend
+          axiosInstance
+            .delete(`/v1/link/${linkType}/${id}`)
+            .then(() => {
+              // delete row
+              api.updateRows([{ id, _action: "delete" }]);
+            })
+            .catch(console.error);
         };
         return (
           <div>
