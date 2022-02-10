@@ -6,17 +6,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 import { axiosInstance } from "../lib/http";
-
-interface LinkMetadata {
-  duration?: number;
-  url: string;
-  title: string;
-  type: string;
-  author: string;
-  uploadDate: Date;
-  width: number;
-  height: number;
-}
+import { LinkMetadata } from "../types";
 
 export default function DataGridComponent() {
   const [rows, setRows] = useState<LinkMetadata[]>(() => []);
@@ -64,11 +54,11 @@ export default function DataGridComponent() {
       headerName: "Actions",
       width: 100,
       renderCell: ({ id, api }) => {
-        const { type: linkType } = api.getRow(id) as LinkMetadata;
+        const currentRow = api.getRow(id) as LinkMetadata;
+        const { type: linkType } = currentRow;
 
         const handleEditClick = () => {
-          console.log("editing ", api.getRow(id));
-          navigate("/edit", { state: {} });
+          navigate("/edit", { state: currentRow });
         };
         const handleDeleteClick = (e: any) => {
           // don't select this row after clicking
@@ -117,7 +107,7 @@ export default function DataGridComponent() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
+        pageSize={10}
         rowsPerPageOptions={[15]}
         disableSelectionOnClick
         showCellRightBorder

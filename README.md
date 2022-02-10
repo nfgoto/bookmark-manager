@@ -24,7 +24,9 @@ frontend
 - reuse components - DONE
 - router - DONE
 - hooks - DONE
-- edit form
+- edit form - DONE
+- tag add
+- tag edit
 - add form - DONE
 - form validation - DONE
 - toast notifications
