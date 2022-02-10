@@ -1,4 +1,5 @@
 export interface LinkMetadata {
+  id: string;
   duration?: number;
   url: string;
   title: string;

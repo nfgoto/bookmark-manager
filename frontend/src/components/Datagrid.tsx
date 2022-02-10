@@ -83,7 +83,13 @@ export default function DataGridComponent() {
               // delete row
               api.updateRows([{ id, _action: "delete" }]);
             })
-            .catch(console.error);
+            .catch((error) => {
+              setAlertMessage(
+                (error as AxiosError)?.response?.data?.message ??
+                  (error as Error)?.message
+              );
+              setOpen(true);
+            });
         };
         return (
           <div>

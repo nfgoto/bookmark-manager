@@ -16,3 +16,12 @@ v1Router.post("/link", asyncWrapper(createLink));
 // DELETE /link/:linktype/:id
 // TODO: add csrf token
 v1Router.delete("/link/:linkType/:id", asyncWrapper(removeLink));
+
+// PUT /link/:linktype/:id
+// TODO: add csrf token
+v1Router.put(
+  "/link/:linkType/:id",
+  asyncWrapper(async (_req, _res) => {
+    throw new Error("not yet implemented");
+  })
+);

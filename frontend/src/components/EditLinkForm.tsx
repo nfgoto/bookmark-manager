@@ -28,7 +28,7 @@ export const EditLinkForm = ({ data }: Props): JSX.Element => {
 
   const onSave = async () => {
     try {
-      await axiosInstance.put("/v1/link", { tags: [] });
+      await axiosInstance.put(`/v1/link/${data.type}/${data.id}`, { tags: [] });
       navigate("/");
     } catch (error) {
       setAlertMessage(
