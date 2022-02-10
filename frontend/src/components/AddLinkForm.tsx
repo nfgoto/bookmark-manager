@@ -2,20 +2,25 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { Snackbar } from "@mui/material";
 import {
   FormControlLabel,
   Radio,
   RadioGroup,
   FormControl,
 } from "@mui/material";
+import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../lib/http";
+import { Alert } from "./Alert";
 
 export const AddLinkForm = function TextFieldHiddenLabel() {
   const [link, setLink] = useState<string>();
   const [provider, setProvider] = useState<string>("flickr");
   const [errors, setErrors] = useState<{ link: string }>();
+  const [open, setOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string>();
   const navigate = useNavigate();
 
   const handleLinkChange = ({
@@ -36,9 +41,24 @@ export const AddLinkForm = function TextFieldHiddenLabel() {
   };
 
   const onSave = async () => {
-    await axiosInstance.post("/v1/link", { provider, consumerUrl: link });
-    // TODO: display toast if error response
-    navigate("/");
+    try {
+      await axiosInstance.post("/v1/link", { provider, consumerUrl: link });
+      navigate("/");
+    } catch (error) {
+      setAlertMessage(
+        (error as AxiosError)?.response?.data?.message ??
+          (error as Error)?.message
+      );
+      setOpen(true);
+    }
+  };
+
+  const handleClose = (event: SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -85,6 +105,11 @@ export const AddLinkForm = function TextFieldHiddenLabel() {
       >
         SAVE
       </Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 };

@@ -29,7 +29,7 @@ frontend
 - tag edit
 - add form - DONE
 - form validation - DONE
-- toast notifications
+- toast error notifications - DONE
 - API HTTP client - DONE
 - search ?
 - oEmbed URL schemevalidation for providers (add form)

@@ -1,16 +1,22 @@
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { AxiosError } from "axios";
 import Button from "@mui/material/Button";
+import { Snackbar } from "@mui/material";
+
 import { axiosInstance } from "../lib/http";
 import { LinkMetadata } from "../types";
+import { Alert } from "./Alert";
 
 export default function DataGridComponent() {
   const [rows, setRows] = useState<LinkMetadata[]>(() => []);
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string>();
 
   useEffect(() => {
     axiosInstance
@@ -18,7 +24,13 @@ export default function DataGridComponent() {
       .then(({ data }) => {
         setRows(data?.links);
       })
-      .catch(console.error);
+      .catch((error) => {
+        setAlertMessage(
+          (error as AxiosError)?.response?.data?.message ??
+            (error as Error)?.message
+        );
+        setOpen(true);
+      });
   }, []);
 
   const columns: GridColDef[] = [
@@ -87,6 +99,14 @@ export default function DataGridComponent() {
     },
   ];
 
+  const handleClose = (event: SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   return (
     <div style={{ height: 600, width: "100%" }}>
       <Stack
@@ -112,6 +132,11 @@ export default function DataGridComponent() {
         disableSelectionOnClick
         showCellRightBorder
       />
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

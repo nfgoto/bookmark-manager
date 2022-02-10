@@ -1,10 +1,13 @@
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../lib/http";
 import { LinkMetadata } from "../types";
+import { Snackbar } from "@mui/material";
+import { Alert } from "./Alert";
+import { AxiosError } from "axios";
 
 interface Props {
   data: LinkMetadata;
@@ -20,10 +23,28 @@ export const EditLinkForm = ({ data }: Props): JSX.Element => {
   const [width] = useState<number>(data.width);
   const [height] = useState<number>(data.height);
   const [duration] = useState<number | undefined>(data.duration);
+  const [open, setOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<string>();
 
   const onSave = async () => {
-    await axiosInstance.put("/v1/link", { tags: [] });
-    navigate("/");
+    try {
+      await axiosInstance.put("/v1/link", { tags: [] });
+      navigate("/");
+    } catch (error) {
+      setAlertMessage(
+        (error as AxiosError)?.response?.data?.message ??
+          (error as Error)?.message
+      );
+      setOpen(true);
+    }
+  };
+
+  const handleClose = (event: SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -91,6 +112,11 @@ export const EditLinkForm = ({ data }: Props): JSX.Element => {
       <Button color="primary" variant="contained" onClick={onSave}>
         SAVE
       </Button>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: "100%" }}>
+          {alertMessage}
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 };
